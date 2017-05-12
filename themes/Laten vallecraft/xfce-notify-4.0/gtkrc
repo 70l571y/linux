@@ -1,0 +1,33 @@
+style "notify-window"
+{
+    XfceNotifyWindow::summary-bold = 1
+    bg[NORMAL] = "#292F34" 
+    XfceNotifyWindow::border-color = "#537585"
+    XfceNotifyWindow::border-color-hover = "#537585"
+    XfceNotifyWindow::border-radius = 0.0
+    XfceNotifyWindow::border-width = 8.0
+    XfceNotifyWindow::border-width-hover = 8.0
+}
+
+style "notify-button"
+{
+    bg[NORMAL] = "#323A40"
+    bg[PRELIGHT] = "#2E353B"
+    bg[ACTIVE] = "#323A40"
+    fg[NORMAL] = "#f2f2f2"
+    fg[PRELIGHT] = "#ffffff"
+    fg[ACTIVE] = "#f2f2f2"
+}
+
+style "notify-text"
+{
+    font_name = "PT Sans 8"
+    fg[NORMAL] = "#dedede"
+    GtkWidget::link-color = "#a7a7a7"
+}
+class "XfceNotifyWindow" style "notify-window"
+widget_class "XfceNotifyWindow.*.GtkButton*" style "notify-button"
+widget_class "XfceNotifyWindow.*.<GtkLabel>" style "notify-text"
+widget_class "XfceNotifyWindow.*.<GtkProgress>" style "notify-progressbar"
+widget_class "XfceNotifyWindow.*.<GtkProgressBar>" style "notify-progressbar"
+
