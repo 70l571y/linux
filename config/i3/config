@@ -319,13 +319,18 @@ bar {
 #	font pango:xos4 Terminus 8
 	font pango:Misc Ohsnap 8
     separator_symbol "<"
+    set $transparent #00000000
     colors {
         separator #ff7100
-        background #263238
+#        background #263238
+		background $transparent
         statusline #ffeaad
-        focused_workspace #263238 #263238 #ff7100
+#        focused_workspace #263238 #263238 #ff7100
+#        active_workspace #2D2D2D #A4A28D #ff7100
+#        inactive_workspace #263238 #263238 #ffeaad
+        focused_workspace $transparent $transparent #ff7100
         active_workspace #2D2D2D #A4A28D #ff7100
-        inactive_workspace #263238 #263238 #ffeaad
+        inactive_workspace $transparent $transparent #ffeaad
     }
 # colors v2
 #	colors {
@@ -363,7 +368,7 @@ exec --no-startup-id numlockx &
 exec --no-startup-id pcmanfm -d
 #exec --no-startup-id jitsi
 #exec --no-startup-id xscreensaver -no-splash
-exec --no-startup-id compton -f --vsync drm -D 1
+exec --no-startup-id compton -f --vsync drm -D 1 --config $HOME/.compton.conf -b
 
 # Theme colors
 
