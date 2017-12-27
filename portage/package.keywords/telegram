@@ -1,0 +1,26 @@
+net-im/telegram-desktop-bin
+# required by dev-lang/rust-1.19.0::gentoo
+# required by virtual/rust-1.19.0::gentoo
+# required by www-client/firefox-57.0.1::gentoo
+# required by firefox (argument)
+=dev-util/cargo-0.21.0 ~amd64
+# required by virtual/rust-1.19.0::gentoo
+# required by dev-util/cargo-0.21.0::gentoo
+# required by www-client/firefox-57.0.1::gentoo
+# required by firefox (argument)
+=dev-lang/rust-1.19.0 ~amd64
+# required by www-client/chromium-63.0.3239.108::gentoo
+# required by @selected
+# required by @world (argument)
+=dev-libs/nss-3.34.1 ~amd64
+# required by dev-java/icedtea-bin-3.6.0::gentoo[multilib,-headless-awt]
+# required by virtual/jdk-1.8.0-r4::pentoo
+# required by dev-java/icedtea-web-1.6.1-r1::gentoo
+=media-libs/libpng-1.6.34 ~amd64
+# required by www-client/chromium-63.0.3239.108::gentoo
+# required by @selected
+# required by @world (argument)
+=dev-libs/nspr-4.17 ~amd64
+# required by www-client/firefox-57.0.1::gentoo
+# required by firefox (argument)
+=virtual/rust-1.19.0 ~amd64

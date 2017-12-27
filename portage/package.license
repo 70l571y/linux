@@ -1,0 +1,7 @@
+# required by www-plugins/chrome-binary-plugins (argument)
+>=www-plugins/chrome-binary-plugins-63.0.3239.108:stable google-chrome
+# required by www-plugins/freshplayerplugin-0.3.5-r2::gentoo
+# required by www-plugins/freshplayerplugin (argument)
+>=www-plugins/adobe-flash-28.0.0.126 AdobeFlash-11.x
+# required by app-arch/rar (argument)
+>=app-arch/rar-5.5.0_p20170811 RAR

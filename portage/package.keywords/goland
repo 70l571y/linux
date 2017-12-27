@@ -1,0 +1,5 @@
+dev-util/goland
+# required by net-im/jitsi-bin (argument)
+=net-im/jitsi-bin-2.8-r1 ~amd64
+# required by media-fonts/fira-mono (argument)
+=media-fonts/fira-mono-3.205 ~amd64
