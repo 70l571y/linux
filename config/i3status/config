@@ -11,14 +11,15 @@ general {
         interval = 5
 }
 
-#order += "ethernet enp5s0"
+#order += "ethernet enp1s0"
+order += "ethernet enp5s0"
 #order += "run_watch DHCP"
 order += "disk /"
 order += "disk /home"
 order += "cpu_usage"
 order += "load"
 #order += "cpu_temperature 0"
-order += "volume master"
+#order += "volume master"
 order += "tztime local"
 
 run_watch DHCP {
@@ -26,7 +27,7 @@ run_watch DHCP {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M"
+        format = "%d-%m-%Y %H:%M"
 }
 
 load {
@@ -38,25 +39,23 @@ cpu_usage {
 }
 
 disk "/" {
-        format = "%avail"
+        format = "/ %avail"
 }
 
 disk "/home" {
-        format = "%avail"
+        format = "/home %avail"
 }
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
+            format = "♪: %volume"
+            format_muted = "♪: muted (%volume)"
+            device = "pulse:0"
 }
 
-cpu_temperature 0 {
-           format = "T: %degrees °C"
-           path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
-}
+#cpu_temperature 0 {
+#           format = "T: %degrees °C"
+#           path = "/sys/devices/platform/coretemp.0/hwmon/hwmon0/temp2_input"
+#}
 
 ethernet enp5s0 {
            # if you use %speed, i3status requires the cap_net_admin capability
@@ -64,4 +63,8 @@ ethernet enp5s0 {
            format_down = "1: down"
 }
 
-
+#ethernet enp2s0 {
+#           # if you use %speed, i3status requires the cap_net_admin capability
+#           format_up = "2: %ip (%speed)"
+#           format_down = "2: down"
+#}

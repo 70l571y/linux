@@ -24,7 +24,6 @@ bindsym $mod+n border normal
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:xos4 Terminus 8
-#font pango:Misc Ohsnap 8
 font pango:Misc Ohsnap 8
 
 # Use Mouse+$mod to drag floating windows
@@ -32,8 +31,8 @@ font pango:Misc Ohsnap 8
 floating_modifier Mod1
 
 # start a terminal
-#bindsym $mod+Return exec sakura -c 100 -r 23
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec sakura
+#bindsym $mod+Return exec terminator
 
 # kill focused window
 #bindsym $mod+Shift+q kill
@@ -44,12 +43,8 @@ bindsym $mod+x kill
 bindsym $mod+d exec rofi -show run -font "xos4 Terminus 8"
 bindsym $mod+r exec rofi -show window -font "xos4 Terminus 8"
 bindsym $mod+q exec rofi -show ssh -font "xos4 Terminus 8"
-bindsym $mod+t exec --no-startup-id sakura -c 100 -r 23
+bindsym $mod+t exec --no-startup-id sakura
 #bindsym $mod+t exec --no-startup-id terminator
-bindsym $mod+p exec passmenu
-#key indicators for i3blocks
-# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -58,15 +53,16 @@ bindsym $mod+p exec passmenu
 
 ###bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
-#exec --no-startup-ido d pa-applet
+#exec --no-startup-id pa-applet
 #exec --no-startup-id pulseaudio --start
 bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
 # Start Applications
-bindsym $mod+F1 exec chromium
-# bindsym $mod+F1 exec firefox
+#bindsym $mod+F1 exec chromium
+#bindsym $mod+F2 exec google-chrome-stable
+bindsym $mod+F1 exec firefox
 bindsym $mod+F2 exec --no-startup-id pcmanfm
 bindsym $mod+Shift+F3 exec --no-startup-id gksu thunar
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -133,17 +129,16 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+a focus parent
 
 # Workspace names
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-# set $ws6 "6: >"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws0 "0:"
+set $ws1 "1:WEB >"
+set $ws2 "2:FM >"
+set $ws3 "3:MAIL >"
+set $ws4 "4:WIN >"
+set $ws5 "5:VB >"
+set $ws6 "6:6 >"
+set $ws7 "7:7 >"
+set $ws8 "8:8 >"
+set $ws9 "9:CODE"
+set $ws0 "0:0 >"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -187,30 +182,30 @@ bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 
 # Open applications on specific workspaces
 assign [class="Firefox"] $ws1
-assign [class="Chromium"] $ws1
 assign [class="VirtualBox"] $ws5
 assign [class="Thunderbird"] $ws3
-assign [class="jetbrains-pycharm"] $ws0
-assign [class="jetbrains-phpstorm"] $ws0
-assign [class="jetbrains-goland"] $ws0
-assign [class="atom"] $ws0
+assign [class="jetbrains-pycharm"] $ws9
+assign [class="jetbrains-phpstorm"] $ws9
+assign [class="jetbrains-goland"] $ws8
 assign [class="Subl"] $ws0
-assign [class="Code"] $ws0
+assign [class="Code"] $ws9
 assign [class="Remmina"] $ws4
 assign [class="Pcmanfm"] $ws2
-assign [class="qpdfview"] $ws5
 
 # Gaps
-gaps inner 7
-gaps outer 1
+#gaps inner 10
+#gaps outer 15
 
-# bindsym $mod+F11 exec i3-msg gaps inner current minus 5
-# bindsym $mod+F12 exec i3-msg gaps inner current plus 5
+#gaps inner 10
+#gaps outer 5
 
-# bindsym $mod+F9 exec i3-msg gaps outer current minus 5
-# bindsym $mod+F10 exec i3-msg gaps outer current plus 5
+#bindsym $mod+F11 exec i3-msg gaps inner current minus 5
+#bindsym $mod+F12 exec i3-msg gaps inner current plus 5
 
-smart_gaps on
+#bindsym $mod+F9 exec i3-msg gaps outer current minus 5
+#bindsym $mod+F10 exec i3-msg gaps outer current plus 5
+
+#smart_gaps on
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 2
@@ -249,7 +244,6 @@ for_window [class="Google-chrome"] border none
 for_window [class="Thunar"] border none
 for_window [class="Pcmanfm"] border none
 for_window [class="Atril"] border none
-for_window [class="Xreader"] border none
 for_window [class="Brackets"] border none
 for_window [class="keeweb"] floating enable
 for_window [class="atom"] floating enable
@@ -262,17 +256,11 @@ for_window [class="Terminator"] floating enable
 for_window [class="file-roller"] floating enable
 for_window [class="phonerlite.exe"] border none
 for_window [class="Mousepad"] floating enable
-for_window [class="Remmina"] border none
+for_window [class="Remmina"] floating enable
 for_window [class="libreoffice"] border none
 for_window [class="Code"] border none
 for_window [class="Thunderbird"] border none
 for_window [class="Mbrowse"] floating enable border none
-for_window [class="libreoffice"] border none
-for_window [class="File-roller"] floating enable
-for_window [class="Xarchiver"] floating enable
-for_window [class="qTox"] floating enable
-for_window [class="Atom"] border none
-for_window [class="qpdfview"] border none
 
 #scratchpad
 for_window [instance="telegram-desktop"] move window to scratchpad, scratchpad show
@@ -280,7 +268,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # switch to workspace with urgent window automatically
-#for_window [urgent=latest] focus
+for_window [urgent=latest] focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -303,7 +291,7 @@ mode "$mode_system" {
     bindsym l exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
-    bindsym p exec --no-startup-id poweroff -i, mode "default"
+    bindsym p exec --no-startup-id poweroff -i, mode "default"  
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -312,7 +300,7 @@ mode "$mode_system" {
 
 bindsym $mod+Pause mode "$mode_system"
 
-# Resize window (you can also use the mouse for that
+# Resize window (you can also use the mouse for that)
 #bindsym $mod+r mode "resize"
 #mode "resize" {
 #        # These bindings trigger as soon as you enter the resize mode
@@ -338,40 +326,36 @@ bindsym $mod+Pause mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-#     status_command i3status
-    status_command i3blocks -c ~/.config/i3blocks/config
-    i3bar_command i3bar -t
+#    i3bar_command i3bar -t
+#	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    status_command i3status
 #    status_command /home/si/go/bin/yagostatus
 	output HDMI1
-    # height 15
-	# position	top
-#	wheel_up_cmd no
+	#position	top
+#	wheel_up_cmd nop
 #	wheel_down_cmd nop
 	strip_workspace_numbers yes
-	# font pango:xos4 Terminus 8
-	font pango: Misc Ohsnap 8
-    # font pango: Ubuntu Mono Regular 8
+#	font pango:xos4 Terminus 8
+	font pango:Misc Ohsnap 8
     separator_symbol "<"
-#   transparency
-  set $transparent #00000000
-
+#    set $transparent #00000000
     colors {
         separator #ff7100
         background #263238
         statusline #ffeaad
         focused_workspace #263238 #263238 #ff7100
         active_workspace #2D2D2D #A4A28D #ff7100
-        inactive_workspace #263238 #263238 #78909c
+        inactive_workspace #263238 #263238 #ffeaad
     }
+# transparency
+#    colors {
+#        separator #ff7100
+#        background $transparent
+#        statusline #ffeaad
+#        focused_workspace $transparent $transparent #ff7100
+#        active_workspace #2D2D2D #A4A28D #ff7100
+#       inactive_workspace $transparent $transparent #ffeaad
 
-   # colors {
-   #     separator #ff7100
-   #     background $transparent
-   #     statusline #ffeaad
-   #     focused_workspace $transparent $transparent #ff7100
-   #     active_workspace #2D2D2D #A4A28D #ff7100
-   #    inactive_workspace $transparent $transparent #78909c
-   #  }
 # colors v2
 #	colors {
 #		separator #ff7100
@@ -394,12 +378,18 @@ bar {
 }
 
 # Autostart applications
+#exec --no-startup-id nm-applet
+#exec --no-startup-id xfce4-power-manager
 #exec_always --no-startup-id sbxkb
+#exec --no-startup-id pidgin
+#exec --no-startup-id sakura
+#exec --no-startup-id chromium
 #exec --no-startup-id thunar --daemon
+#exec --no-startup-id jitsi
 #exec --no-startup-id xscreensaver -no-splash
+#exec --no-startup-id compton -f --vsync drm -D 1 --config $HOME/.compton.conf -bc
 #exec --no-startup-id redshift -l 56.015283:92.893248 &
-# exec --no-startup-id compton -f --vsync drm -D 1 --config $HOME/.compton.conf -bc
-# exec --no-startup-id compton -f --vsync opengl -D 1 --config $HOME/.compton.conf -bc
+#exec --no-startup-id telegram-desktop
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id pulseaudio -k
@@ -409,12 +399,7 @@ exec --no-startup-id numlockx &
 exec --no-startup-id pcmanfm -d
 exec --no-startup-id twmnd &
 exec --no-startup-id parcellite
-exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
-exec --no-startup-id chromium
-exec --no-startup-id thunderbird
-exec --no-startup-id pcmanfm
-#exec --no-startup-id subl3
-
+exec compton -f --vsync drm
 
 # Theme colors
 
@@ -436,7 +421,7 @@ workspace $ws8 output HDMI1
 workspace $ws9 output HDMI1
 
 #set display resolution
-exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --output VGA1 --mode 1920x1080 --pos 1920x0
+exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --output VGA1 --mode 1280x1024 --pos 1920x0
 
 #set keymaps
 exec --no-startup-id setxkbmap "us,ru" ",winkeys" "grp:caps_toggle"
