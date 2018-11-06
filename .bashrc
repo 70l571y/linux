@@ -22,6 +22,22 @@ man() {
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export 
-IBUS_ENABLE_SYNC_MODE=1PATH="/usr/sbin:/sbin:/bin:/usr/games:$PATH"
-PATH="/usr/sbin:/sbin:/bin:/usr/games:$PATH"
+
+export LANG="en_US.UTF-8"
+export LC_COLLATE="C"
+export TERM=xterm-256color
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export VISUAL="vim"
+
+export HTTP_PROXY="http://user:pass@ip:port";
+export http_proxy=$HTTP_PROXY;
+export HTTPS_PROXY=$http_proxy;
+export https_proxy=$http_proxy;
+export FTP_PROXY=$http_proxy;
+export ftp_proxy=$http_proxy;
+export RSYNC_PROXY=$http_proxy;
+export rsync_proxy=$http_proxy;
+export all_proxy=$http_proxy;
+export ALL_PROXY=$http_proxy;
+export no_proxy=localhost,127.0.0.0/8;
