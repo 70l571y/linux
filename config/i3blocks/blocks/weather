@@ -5,6 +5,7 @@ API_KEY="3be5d53611e0ca37d35aa15fe6446846"
 
 # Check on http://openweathermap.org/find
 # CITY_ID="${BLOCK_INSTANCE}"
+# Krasnoyarsk = 1502026
 CITY_ID="1502026"
 
 URGENT_LOWER=-30
@@ -21,7 +22,8 @@ SYMBOL_CELSIUS="℃"
 
 WEATHER_URL="http://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&appid=${API_KEY}&units=metric"
 # WEATHER_INFO=$(wget -qO- "${WEATHER_URL}")
-WEATHER_INFO=$(curl -s --proxy 10.88.87.5:3128 -U SidorkinRL:Qwer!1234 "${WEATHER_URL}")
+# WEATHER_INFO=$(curl -s --proxy 10.88.87.5:3128 -U SidorkinRL:Xx1234567 "${WEATHER_URL}")
+WEATHER_INFO=$(curl -s "${WEATHER_URL}")
 WEATHER_MAIN=$(echo "${WEATHER_INFO}" | grep -o -e '\"main\":\"[a-Z]*\"' | awk -F ':' '{print $2}' | tr -d '"')
 WEATHER_TEMP=$(echo "${WEATHER_INFO}" | grep -o -e '\"temp\":\-\?[0-9]*' | awk -F ':' '{print $2}' | tr -d '"')
 

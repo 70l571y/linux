@@ -10,9 +10,7 @@ set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 1
-#default_border pixel 1
 new_float normal
-#default_floating_border none
 #new_window none
 
 # Hide borders
@@ -48,8 +46,6 @@ bindsym $mod+x kill
 #bindsym $mod+d exec rofi -show run -font "Misc Ohsnap 10"
 #bindsym $mod+d exec rofi -show run -font "xos4 Terminus 8"
 # bindsym $mod+d exec rofi -show run -font "Ubuntu Mono Regular 8"
-# set $menu exec alacritty -e sway-launcher-desktop
-# bindsym --to-code $mod+d exec $menu
 bindsym $mod+d exec rofi -show run -font "Terminus 9"
 bindsym $mod+r exec rofi -show window -font "Terminus 9"
 bindsym $mod+q exec rofi -show ssh -font "Terminus 9"
@@ -296,10 +292,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # i3 lock
-bindsym $mod+Scroll_Lock exec "~/.config/i3/lock.sh"
-exec xautolock -time 15 -locker '~/.config/i3/lock.sh' &
-# bindsym --release $mod+Scroll_Lock exec --no-startup-id slock
-# exec xautolock -time 15 -locker --no-startup-id slock &
+# bindsym $mod+Scroll_Lock exec "~/.config/i3/lock2.sh"
+# exec xautolock -time 15 -locker '~/.config/i3/lock2.sh' &
+bindsym --release $mod+Scroll_Lock exec --no-startup-id slock
+exec xautolock -time 15 -locker --no-startup-id slock &
 
 # Set shutdown, restart and locking features
 #set $Locker i3lock && sleep 1
@@ -344,10 +340,7 @@ bindsym $mod+Pause mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-    #status_command i3blocks -c ~/.config/i3blocks/config
-    status_command i3status-rs ~/.config/i3status-rs/status.toml
-    #swaybar_command swaybar
-    #status_command i3status
+    status_command i3blocks -c ~/.config/i3blocks/config
     # i3bar_command i3blocks -t
     # i3bar_command i3bar
 #    status_command /home/si/go/bin/yagostatus
@@ -363,7 +356,7 @@ bar {
     # font pango:Misc Ubuntu Mono Regular 8
 	# font pango: Misc Ohsnap 8
     # separator_symbol "<"
-  separator_symbol "|"
+    separator_symbol "|"
 #   transparency
   # set $transparent #00000000
   # Adwaita theme
@@ -444,7 +437,7 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh
 #exec --no-startup-id /usr/lib/x86_64-linux-gnu/indicator-messages/indicator-messages-service
 #exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id system-config-printer-applet
+exec --no-startup-id system-config-printer-applet
 #exec --no-startup-id usr/bin/snap userd --autostart
 #exec --no-startup-id /usr/bin/spice-vdagent
 #exec --no-startup-id update-notifier
@@ -458,7 +451,7 @@ exec --no-startup-id pcmanfm -d
 exec --no-startup-id parcellite
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
 exec --no-startup-id udiskie -2 &
-#exec --no-startup-id chromium --enable-native-gpu-memory-buffers --enable-features="CheckerImaging"
+exec --no-startup-id chromium --enable-native-gpu-memory-buffers --enable-features="CheckerImaging"
 # exec --no-startup-id slack
 # exec --no-startup-id menutray -i &
 # exec --no-startup-id firefox

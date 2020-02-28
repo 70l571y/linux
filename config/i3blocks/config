@@ -101,7 +101,7 @@ interval=60
 [disk]
 # color=#8bc34a
 color=#80CBC4
-label=
+label=
 instance=/home
 interval=60
 
@@ -110,9 +110,10 @@ interval=60
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
-label=
+#label=
+label=
 #label=
-instance=enp5s0
+instance=enp3s0
 # color=#66bb6a
 color=#80CBC4
 interval=10
@@ -124,10 +125,10 @@ interval=10
 # separator=false
 
 [bandwidth]
-label=
+label=
 # color=#4db6ac
 color=#80CBC4
-instance=enp5s0
+instance=enp3s0
 interval=2
 
 # CPU usage
@@ -142,8 +143,7 @@ interval=2
 # separator=false
 
 [cpu]
-# label=
-# color=#00bcd4
+#color=#00bcd4
 color=#80CBC4
 label=
 interval=2
@@ -152,7 +152,7 @@ interval=2
 [load_average]
 # color=#03a9f4
 color=#80CBC4
-label=
+label=
 interval=5
 
 # [clickme]
@@ -201,7 +201,7 @@ interval=2
 # signal=10
 
 [microphone]
-# color=#ce93d8
+#color=#ce93d8
 color=#80CBC4
 label=
 interval=5
@@ -209,10 +209,10 @@ interval=5
 # Date Time
 #
 [time]
-# color=#ea80fc
+#color=#ea80fc
 color=#80CBC4
 command=date '+%d-%m-%Y %H:%M'
-interval=2
+interval=5
 
 # Generic media player support
 #
