@@ -1,4 +1,3 @@
-
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
@@ -9,14 +8,14 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
-#default_border pixel 1
+new_window normal
 new_float normal
-#default_floating_border none
-#new_window none
+default_border pixel 1
+
+default_floating_border pixel 1
 
 # Hide borders
-hide_edge_borders none
+hide_edge_borders smart
 
 # change borders
 bindsym $mod+u border none
@@ -31,12 +30,15 @@ bindsym $mod+n border normal
 # font pango:Terminus (TTF) 9
 font pango:Terminus 8
 
+
 # Use Mouse+$mod to drag floating windows
 #floating_modifier $mod
 floating_modifier Mod1
 
 # start a terminal
-bindsym $mod+Return exec sakura -c 110 -r 23
+# bindsym $mod+Return exec sakura -c 110 -r 20
+bindsym $mod+Return exec kitty
+# bindsym $mod+Return exec alacritty
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec terminator
 
@@ -48,21 +50,17 @@ bindsym $mod+x kill
 #bindsym $mod+d exec rofi -show run -font "Misc Ohsnap 10"
 #bindsym $mod+d exec rofi -show run -font "xos4 Terminus 8"
 # bindsym $mod+d exec rofi -show run -font "Ubuntu Mono Regular 8"
-# set $menu exec alacritty -e sway-launcher-desktop
-# bindsym --to-code $mod+d exec $menu
 bindsym $mod+d exec rofi -show run -font "Terminus 9"
 bindsym $mod+r exec rofi -show window -font "Terminus 9"
 bindsym $mod+q exec rofi -show ssh -font "Terminus 9"
-# bindsym $mod+t exec --no-startup-id sakura -c 110 -r 23
+#bindsym $mod+t exec --no-startup-id sakura -c 110 -r 23
 bindsym $mod+t exec --no-startup-id alacritty
-# bindsym $mod+t exec --no-startup-id kitty
+#bindsym $mod+t exec --no-startup-id kitty
 #bindsym $mod+t exec --no-startup-id terminator
 bindsym $mod+p exec --no-startup-id passmenu
 #key indicators for i3blocks
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-
-# bindsym $mod+Shift+y exec --no-startup-id alacritty -e youtube-viewer --resolution=480 --cache=90000 ( xclip -o )
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -78,11 +76,13 @@ bindsym $mod+Ctrl+m exec pavucontrol
 ################################################################################################
 
 # Start Applications
-bindsym $mod+F1 exec chromium --enable-native-gpu-memory-buffers --enable-features="CheckerImaging"
-# bindsym $mod+F1 exec firefox
+#bindsym $mod+F1 exec chromium --enable-native-gpu-memory-buffers --enable-features="CheckerImaging"
+bindsym $mod+F1 exec firefox
+#bindsym $mod+F1 exec vivaldi-stable
+#bindsym $mod+F1 exec chromium
+#bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec --no-startup-id pcmanfm
-bindsym $mod+F5 exec sshfs si@10.254.11.3:/ /home/si/disk -C -p 22 -o allow_other
-bindsym $mod+g exec --no-startup-id mousepad
+bindsym $mod+g exec --no-startup-id leafpad
 #bindsym $mod+Shift+F3 exec --no-startup-id gksu pcmanfm
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec "scrot -e 'mv $f ~/Screenshots/'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots/'"
@@ -148,19 +148,31 @@ bindsym $mod+a focus parent
 
 # Workspace names
 # echo -e '\uf268'
-set $ws1 "1:"
-set $ws2 "2:"
-# set $ws3 "3:"
-set $ws3 "3:"
-set $ws4 "4:"
-# set $ws4 "4:"
-set $ws5 "5:"
-# set $ws6 "6: >"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws0 "0:"
+# set $ws1 "1:"
+# set $ws2 "2:"
+# # set $ws3 "3:"
+# set $ws3 "3:"
+# set $ws4 "4:"
+# # set $ws4 "4:"
+# set $ws5 "5:"
+# # set $ws6 "6: >"
+# set $ws6 "6:"
+# set $ws7 "7:"
+# set $ws8 "8:"
+# set $ws9 "9:"
+# set $ws0 "0:"
+
+#normal
+set $ws1 "1:@"
+set $ws2 "2:/"
+set $ws3 "3:-"
+set $ws4 "4:+"
+set $ws5 "5:*"
+set $ws6 "6:^"
+set $ws7 "7:-"
+set $ws8 "8:-"
+set $ws9 "9:#"
+set $ws0 "0:-"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -205,6 +217,8 @@ bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 # Open applications on specific workspaces
 assign [class="firefox"] $ws1
 assign [class="Chromium"] $ws1
+assign [class="Google-chrome"] $ws1
+assign [class="Vivaldi-stable"] $ws1
 assign [class="Pcmanfm"] $ws2
 assign [class="Midori"] $ws3
 assign [class="Thunderbird"] $ws3
@@ -212,16 +226,14 @@ assign [class="Remmina"] $ws4
 assign [class="qpdfview"] $ws5
 assign [class="VirtualBox"] $ws5
 assign [class="DBeaver"] $ws6
-assign [class="robo3t"] $ws7
 assign [class="Postman"] $ws7
-assign [class="Apache JMeter"] $ws7
-assign [class="org-apache-jmeter-NewDriver"] $ws7
-assign [class="Subl"] $ws8
-assign [class="jetbrains-pycharm"] $ws0
-assign [class="jetbrains-phpstorm"] $ws0
-assign [class="jetbrains-goland"] $ws0
+assign [class="robo3t"] $ws8
+assign [class="Subl"] $ws0
 assign [class="atom"] $ws0
 assign [class="code-oss"] $ws0
+assign [class="Code"] $ws0
+assign [class="jetbrains-goland"] $ws0
+assign [class="jetbrains-pycharm"] $ws0
 assign [class="java-lang-Thread"] $ws0
 
 # Gaps
@@ -256,7 +268,9 @@ for_window [class="Gpicview"] floating enable
 for_window [class="Keepassx"] floating enable
 for_window [class="Terminator"] floating enable
 for_window [class="Mousepad"] floating enable
+for_window [class="Leafpad"] floating enable
 for_window [class="Xarchiver"] floating enable
+for_window [class="Engrampa"] floating enable
 for_window [class="Network Connections"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [class="GitKraken"] floating enable
@@ -264,17 +278,19 @@ for_window [class="Transmission-gtk"] floating enable
 for_window [class="flacon"] floating enable
 for_window [class="Mainwindow.py"] floating enable
 for_window [class="Deadbeef"] floating enable
+for_window [class="Audacious"] floating enable
+for_window [class="KeePassXC"] floating enable
+for_window [class="Skype"] floating enable border none
 for_window [class="java-lang-Thread"] floating enable border none
-for_window [class="telegram-desktop"] floating enable border none
-for_window [class="slack"] floating enable border none
+for_window [class="telegram-desktop"] floating enable
+for_window [class="Slack"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="MPlayer"] floating enable
-for_window [class="Audacious"] floating enable
-for_window [class="acetoneiso"] floating enable
+for_window [class="Clementine"] floating enable
 
 #scratchpad
 for_window [instance="telegram-desktop"] move window to scratchpad
-# for_window [instance="slack"] move window to scratchpad, scratchpad show
+for_window [instance="slack"] move window to scratchpad
 # bindsym $mod+F1 [class="^TelegramDesktop$"] scratchpad show
 # bindsym $mod+F2 [class="^Keepassx$"] scratchpad show
 # bindsym $mod+Shift+minus move scratchpad
@@ -297,9 +313,11 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # i3 lock
 bindsym $mod+Scroll_Lock exec "~/.config/i3/lock.sh"
-exec xautolock -time 15 -locker '~/.config/i3/lock.sh' &
-# bindsym --release $mod+Scroll_Lock exec --no-startup-id slock
-# exec xautolock -time 15 -locker --no-startup-id slock &
+# exec xautolock -time 15 -locker '~/.config/i3/lock.sh' &
+#bindsym $mod+Scroll_Lock exec "~/.config/i3/lock2.sh"
+# exec xautolock -time 15 -locker '~/.config/i3/lock2.sh' &
+#bindsym --release $mod+Scroll_Lock exec --no-startup-id slock
+#exec xautolock -time 15 -locker --no-startup-id slock &
 
 # Set shutdown, restart and locking features
 #set $Locker i3lock && sleep 1
@@ -345,45 +363,28 @@ bindsym $mod+Pause mode "$mode_system"
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
     #status_command i3blocks -c ~/.config/i3blocks/config
-    status_command i3status-rs ~/.config/i3status-rs/status.toml
+    status_command i3status-rs ~/.config/i3status-rs/config.toml
     #swaybar_command swaybar
     #status_command i3status
     # i3bar_command i3blocks -t
     # i3bar_command i3bar
-#    status_command /home/si/go/bin/yagostatus
-	output HDMI1
-  # height 17
+    # status_command ~/go/bin/yagostatus
+    output VGA-0
+    height 16
 	# position	top
 #	wheel_up_cmd no
 #	wheel_down_cmd nop
 	strip_workspace_numbers yes
 	# font pango:Terminus (TTF) 9
-  # font pango:xos4 Terminus 8
+  # font pango:xos4 Terminus 8, FontAwesome 9
 	font pango:Terminus 8
     # font pango:Misc Ubuntu Mono Regular 8
-	# font pango: Misc Ohsnap 8
+	# font pango: Ohsnap 8
     # separator_symbol "<"
-  separator_symbol "|"
+    # separator_symbol "|"
 #   transparency
   # set $transparent #00000000
-  # Adwaita theme
-    # colors {
-    #     separator #1cffcd
-    #     background #263238
-    #     statusline #ffeaad
-    #     focused_workspace #263238 #263238 #1cffcd
-    #     active_workspace #2D2D2D #A4A28D #00ff83
-    #     inactive_workspace #263238 #263238 #78909c
-    # }
-  # Adwaita theme
-    # colors {
-    #     separator #ff7100
-    #     background #263238
-    #     statusline #ffeaad
-    #     focused_workspace #263238 #263238 #ff7100
-    #     active_workspace #2D2D2D #A4A28D #ff7100
-    #     inactive_workspace #263238 #263238 #78909c
-    # }
+
 # Transparent theme
    # colors {
    #     separator #ff7100
@@ -393,14 +394,7 @@ bar {
    #     active_workspace #2D2D2D #A4A28D #ff7100
    #    inactive_workspace $transparent $transparent #78909c
    #  }
-# colors v2
-	# colors {
-	# 	separator #ff7100
-	# 	background #3E515A
-	# 	statusline #ffeaad
-	# 	focused_workspace #ff7100 #CE5C00 #FFFFFF
-	# 	inactive_workspace #3E515A #3E515A #DDDDDD
-	# }
+
 # Solarized Dark
     colors {
       background #002b36
@@ -411,23 +405,12 @@ bar {
       inactive_workspace #073642 #002b36 #839496
       urgent_workspace   #dc322f #dc322f #fdf6e3
     }
-
-#colors for arc themes
-#	colors {
-#		separator #CE5C00
-#		background #383C4A
-#		statusline #DDDDDD
-#		focused_workspace #FFFFFF #CE5C00 #383C4A
-#		active_workspace #2D2D2D #A4A28D #FFFFFF
-#		inactive_workspace #A4A28D #383C4A #DDDDDD
-#		urgent_workspace #2ECC71 #900000 #FFFFFF
-#	}
 }
 
 # Theme colors
 # Solarized Dark
 client.focused #1cffcd #1cffcd #000000 #FFFFFF
-client.unfocused #222222 #222222 #2ECC71 #222222
+client.unfocused #002B36 #002B36 #2ECC71 #002B36
 client.urgent #dc322f #dc322f #FFFFFF #900000
 
 # Autostart applications
@@ -435,13 +418,14 @@ client.urgent #dc322f #dc322f #FFFFFF #900000
 #exec --no-startup-id thunar --daemon
 #exec --no-startup-id xscreensaver -no-splash
 #exec --no-startup-id redshift -l 56.015283:92.893248 &
-# exec --no-startup-id compton -f -D 1 --config $HOME/.compton.conf -bc
+# exec --no-startup-id compton -f --vsync drm -D 1 --config $HOME/.compton.conf -bc
+# exec --no-startup-id compton -f --vsync opengl -D 1 --config $HOME/.compton.conf -bc
 
 
 #exec --no-startup-id /usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh
+#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh
 #exec --no-startup-id /usr/lib/x86_64-linux-gnu/indicator-messages/indicator-messages-service
 #exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id system-config-printer-applet
@@ -449,7 +433,7 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh
 #exec --no-startup-id /usr/bin/spice-vdagent
 #exec --no-startup-id update-notifier
 # exec --no-startup-id xdg-user-dirs-gtk-update
-exec --no-startup-id pulseaudio -k
+#exec --no-startup-id pulseaudio -k
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id tilda
 exec --no-startup-id numlockx &
@@ -457,33 +441,30 @@ exec --no-startup-id pcmanfm -d
 # exec --no-startup-id twmnd &
 exec --no-startup-id parcellite
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
-exec --no-startup-id udiskie -2 &
+#exec --no-startup-id udiskie -2 &
 #exec --no-startup-id chromium --enable-native-gpu-memory-buffers --enable-features="CheckerImaging"
-# exec --no-startup-id slack
-# exec --no-startup-id menutray -i &
 # exec --no-startup-id firefox
 #exec --no-startup-id thunderbird
 #exec --no-startup-id nm-applet
+#exec --no-startup-id slack
 #exec --no-startup-id subl
-# exec --no-startup-id telegram-desktop
-# exec rclone mount drive: $HOME/rdrive
+#exec --no-startup-id telegram-desktop
 
 
 #Automatically putting workspaces on specific screens
-#workspace $ws0 output HDMI-1
-workspace $ws0 output VGA1
-workspace $ws1 output HDMI1
-workspace $ws2 output HDMI1
-workspace $ws3 output HDMI1
-workspace $ws4 output HDMI1
-workspace $ws5 output HDMI1
-workspace $ws6 output HDMI1
-workspace $ws7 output HDMI1
-workspace $ws8 output HDMI1
-workspace $ws9 output HDMI1
+workspace $ws0 output DVI-0
+workspace $ws1 output VGA-0
+workspace $ws2 output VGA-0
+workspace $ws3 output VGA-0
+workspace $ws4 output VGA-0
+workspace $ws5 output VGA-0
+workspace $ws6 output VGA-0
+workspace $ws7 output VGA-0
+workspace $ws8 output VGA-0
+workspace $ws9 output VGA-0
 
 #set display resolution
-exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --output VGA1 --mode 1920x1080 --pos 1920x0
+exec --no-startup-id xrandr --output VGA-0 --mode 1920x1080 --pos 0x0 --output DVI-0 --mode 1920x1080 --pos 1920x0
 
 #set keymaps
 exec --no-startup-id setxkbmap "us,ru" ",winkeys" "grp:caps_toggle"

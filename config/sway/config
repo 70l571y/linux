@@ -1,0 +1,456 @@
+#
+
+set $mod Mod4
+set $mod1 Mod1
+
+# Set your terminal
+set $terminal kitty
+
+# for_window [class="^.*"] border pixel 0
+gaps inner 7
+gaps outer 3
+
+smart_gaps on
+smart_borders on
+default_border pixel 1
+set $borderwidth 1
+#hide_edge_borders both
+hide_edge_borders none
+
+set $gnome-schema org.gnome.desktop.interface
+# exec_always gsettings set $gnome-schema gtk-theme 'Arc-Dark'
+# Set colors
+set $bg-color            #333333
+set $inactive-bg-color   #333333
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+set $focus-text-color    #87CEEB
+
+set $black       #282828
+set $darkblack   #1d2021
+set $transparent #000000AA
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+
+#font pango:xos4 Terminus 8
+#font pango:Misc Ohsnap 8
+#font pango:Ubuntu Mono 10
+#font pango:Terminus (TTF) 9
+#font pango: Inconsolata 12
+font pango:Terminus 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod1
+
+# start a terminal
+#bindsym $mod+Return exec sakura -c 110 -r 20
+#bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec terminator
+bindsym $mod+Return exec $terminal
+bindsym $mod+t exec $terminal  --class="termfloat"
+
+# sound actions
+###bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#exec --no-startup-id pulseaudio
+#exec --no-startup-ido d pa-applet
+#exec --no-startup-id pulseaudio --start
+bindsym $mod+Ctrl+m exec pavucontrol
+
+# kill focused window
+bindsym $mod+x kill
+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec --no-startup-id rofi -show run  -m -1 
+bindsym $mod+d exec rofi -show run -font "Terminus 9"
+bindsym $mod+r exec rofi -show window -font "Terminus 9"
+bindsym $mod+q exec rofi -show ssh -font "Terminus 9"
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+
+# bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Workspace Variables
+
+#set $ws1 "1:   "
+#set $ws2 "2:   "
+#set $ws3 "3:   "
+#set $ws4 "4:   "
+#set $ws5 "5:   "
+#set $ws6 "6:   "
+#set $ws7 "7: " "
+
+set $ws1 "1:@"
+set $ws2 "2:/"
+set $ws3 "3:-"
+set $ws4 "4:+"
+set $ws5 "5:*"
+set $ws6 "6:^"
+set $ws7 "7:-"
+set $ws8 "8:-"
+set $ws9 "9:#"
+set $ws0 "0:-"
+
+workspace $ws0 output DVI-I-1
+workspace $ws1 output VGA-1
+workspace $ws2 output VGA-1
+workspace $ws3 output VGA-1
+workspace $ws4 output VGA-1
+workspace $ws5 output VGA-1
+workspace $ws6 output VGA-1
+workspace $ws7 output VGA-1
+workspace $ws8 output VGA-1
+workspace $ws9 output VGA-1
+
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0
+
+# Open applications on specific workspaces
+assign [class="firefox"] $ws1
+assign [class="Chromium"] $ws1
+assign [class="Pcmanfm"] $ws2
+assign [class="pcmanfm"] $ws2
+assign [class="Midori"] $ws3
+assign [class="Thunderbird"] $ws3
+assign [class="Remmina"] $ws4
+assign [class="qpdfview"] $ws5
+assign [class="VirtualBox"] $ws5
+assign [class="DBeaver"] $ws6
+assign [class="Postman"] $ws6
+assign [class="robo3t"] $ws7
+assign [class="Subl"] $ws0
+assign [class="atom"] $ws0
+assign [class="code-oss"] $ws0
+assign [class="jetbrains-goland"] $ws0
+assign [class="java-lang-Thread"] $ws0
+
+# Open specific applications in floating mode
+for_window [class="Galculator"] floating enable border pixel 2
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Pavucontrol"] floating enable
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+#for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="Tilda"] floating enable
+for_window [class="Urxvt"] floating enable
+for_window [class="Sakura"] floating enable
+for_window [class="Alacritty"] floating enable
+for_window [class="kitty"] floating enable
+for_window [class="Gpicview"] floating enable
+for_window [class="Keepassx"] floating enable
+for_window [class="Terminator"] floating enable
+for_window [class="Mousepad"] floating enable
+for_window [class="Xarchiver"] floating enable
+for_window [class="Network Connections"] floating enable
+for_window [class="File-roller"] floating enable
+for_window [class="GitKraken"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+for_window [class="flacon"] floating enable
+for_window [class="Mainwindow.py"] floating enable
+for_window [class="Deadbeef"] floating enable
+for_window [class="KeePassXC"] floating enable
+for_window [class="Skype"] floating enable border none
+for_window [class="java-lang-Thread"] floating enable border none
+for_window [class="telegram-desktop"] floating enable
+for_window [class="Slack"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="MPlayer"] floating enable
+for_window [class="Clementine"] floating enable
+
+for_window [app_id="termfloat"] floating enable
+for_window [app_id="termfloat"] resize set height 320
+for_window [app_id="termfloat"] resize set width 920
+
+#scratchpad
+for_window [instance="telegram-desktop"] move window to scratchpad
+for_window [instance="slack"] move window to scratchpad
+# bindsym $mod+F1 [class="^TelegramDesktop$"] scratchpad show
+# bindsym $mod+F2 [class="^Keepassx$"] scratchpad show
+# bindsym $mod+Shift+minus move scratchpad
+# bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+grave scratchpad show
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Exit sway (logs you out of your X session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway' -b 'Yes, exit sway' 'swaymsg exit'
+
+# Hibernate
+bindsym $mod+Shift+z exec swaynag -t warning -m 'Sleepy time?!?!' -b 'ZzZz...' 'systemctl hibernate'
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+#bindsym $mod+r mode "resize"
+#bindsym $mod+Shift+f exec ~/.config/i3/bin/rofi_finder
+
+# Custom bind keys
+
+bindsym $mod+l exec swaylock -i ~/Pictures/wallpaper-04.png 
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+
+# Pulse Audio controls
+# run pactl list sinks
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5% # Raise
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5% # Lower
+bindsym XF86AudioMute exec pactl set-sink-mute  $(pacmd list-sinks |awk '/* index:/{print $3}') toggle # Mute
+
+# Sreen brightness controls -- # https://github.com/haikarainen/light
+bindsym XF86MonBrightnessUp exec light -A 5    # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
+
+# multimedia keys
+bindsym XF86AudioPlay  exec "mpc toggle"
+bindsym XF86AudioStop  exec "mpc stop"
+bindsym XF86AudioNext  exec "mpc next"
+bindsym XF86AudioPrev  exec "mpc prev"
+bindsym XF86AudioPause exec "mpc pause"
+
+
+bar {
+  #swaybar_command waybar
+#  workspace_buttons yes
+  status_command i3status-rs ~/.config/i3status-rs/config.toml
+  #status_command i3blocks -c ~/.config/i3blocks/config
+  height 16
+  strip_workspace_numbers yes
+  output VGA-1
+  
+  # Solarized Dark
+    colors {
+      background #002b36
+      statusline #839496
+      separator  #dc322f
+      focused_workspace  #586e75 #586e75 #002b36
+      active_workspace   #586e75 #586e75 #002b36
+      inactive_workspace #073642 #002b36 #839496
+      urgent_workspace   #dc322f #dc322f #fdf6e3
+    }
+}
+
+# Startup programs
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh
+exec --no-startup-id pulseaudio -k
+#exec --no-startup-id nitrogen --restore
+exec --no-startup-id tilda
+exec --no-startup-id numlockx &
+exec --no-startup-id pcmanfm -d
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/bin/snap userd --autostart
+
+
+#exec_always feh --bg-scale ~/Pictures/car.jpg
+exec --no-startup-id /usr/lib/gsd-xsettings
+
+# Bind App to workspace
+# Check class by : xprop
+# swaymsg -t get_tree
+assign [class="Google-chrome"] $ws2
+assign [class="KeePass2"] $ws3
+assign [class="Pcmanfm"] $ws4
+assign [class="Firefox"] $ws6
+assign [class="Remmina"] $ws3
+assign [class="Skype"] $ws7
+
+# Custom Keybinds
+bindsym $mod+c exec google-chrome-stable
+
+# Press $mod+o followed by either f, t, Esc or Return to launch firefox,
+# thunderbird or return to the default mode, respectively.
+#set $mode_launcher Launcher
+#bindsym $mod+o mode "$mode_launcher"
+
+#mode "$mode_launcher" {
+#    bindsym m exec terminator
+#    bindsym n exec nautilus
+#    bindsym v exec virt-manager 
+#    bindsym d exec deepin-screenshot 
+#    bindsym Return mode "default"
+#}
+
+# Shutdown, Reboot, Lock Screen, and Logout 
+
+set $power_mode "power"
+bindsym $mod+Shift+q      mode $power_mode
+mode $power_mode {
+    bindsym p         exec systemctl poweroff
+    bindsym r         exec systemctl reboot 
+    bindsym l         exec swaylock -i ~/Pictures/car.jpg , mode "default"
+    bindsym q         exec --no-startup-id i3-msg exit, mode "default"
+    bindsym h         exec systemctl hibernate 
+    #bindsym s        exec sudo  /lib/systemd/systemd-sleep hybrid-sleep 
+    bindsym s         exec pm-suspend
+
+    bindsym Return    mode "default"
+    bindsym Escape    mode "default"
+}
+
+# Floating windows
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+
+for_window [window_role="task_dialog|bubble|page-info|Preferences|pop-up"] floating enable
+for_window [window_role="Open Files"] floating enable sticky
+for_window [window_role="File Operation Progress"] floating enable sticky
+for_window [window_role="Save As"] floating enable
+
+for_window [class="qBittorrent" window_role="pop-up"] floating enable
+for_window [class="mtp-ng-qt" window_role="Open"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+#for_window [class="VirtualBox"] floating enable
+
+# Sticky window
+for_window [instance="file_progress"]  sticky enable
+for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserDialog"] sticky enable
+
+# Focus window settings
+no_focus [window_role="pop-up"]
+focus_on_window_activation focus 
+for_window [class="(?i)"] focus 
+focus_follows_mouse no
+
+# Rename workspace with i3-input using numbers and text
+
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+
+for_window [class="chromium" instance="chromium"] border none
+
+
+# screenshot
+bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
+bindsym --release Shift+Print exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
+
+# Configure outputs here
+# How to get outputs configurable - $ swaymsg -t get_outputs
+#output eDP-1 {
+#                background ~/Pictures/car.jpg fill
+#                resolution 1920x1080
+#		scale 1.4
+#           }
+
+# Inputs - Get your inputs with the command:
+# swaymsg -t get_inputs
+#input 1267:35:Elan_Touchpad {
+#    tap enabled
+#    natural_scroll enabled
+#}
+
+set $mode_system System  [l]ogout, [s]uspend, [r]eboot, [p]oweroff
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id suspend, mode "default"
+    bindsym r exec --no-startup-id reboot, mode "default"
+    bindsym p exec --no-startup-id poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"

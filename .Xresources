@@ -1,3 +1,5 @@
+! для применения настроек в текущей сессии используйте `xrdb -load ~/.Xresources`
+
 Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true
@@ -6,19 +8,86 @@ Xft.autohint: false
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
-URxvt.url-select.launcher:  chromium
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.perl-ext-common: default,tabbed,matcher
 
-*VT100.colorBDMode:     true
-*VT100.colorBD:         red
-*VT100.colorULMode:     true
-*VT100.colorUL:         cyan
-*VT100.veryBoldColors: 6
+URxvt.url-launcher: /usr/bin/chromium
+URxvt.matcher.button: 2
+URxvt.colorUL: #cacc46
+URxvt.underlineURLs: true
+URxvt.underlineColor: #cacc46
 
-URxvt.colorIT:      #87af5f
-URxvt.colorBD:      #d7d7d7
-URxvt.colorUL:      #87afd7
+URxvt.font: xft:Terminus:pixelsize=12
+URxvt.boldFont: xft:Terminus:bold
+
+URxvt.saveLines: 5000
+URxvt.geometry: 100x20
+URxvt.termName: rxvt
+
+URxvt.scrollBar: true
+URxvt.scrollstyle: plain
+URxvt.scrollBar_right: true
+URxvt.scrollColor: #1A1A1A
+
+! color the man
+URxvt.colorMode: on
+URxvt.boldColors: on
+URxvt.dynamicColors: on
+URxvt.colorULMode: on
+URxvt.underLine: off
+URxvt.colorBDMode: on
+URxvt.colorBD:  cyan
+
+URxvt.background: #2c2c2c
+URxvt.foreground: #dcdccc
+URxvt.color0: #2c2c2c
+URxvt.color1: #705050
+URxvt.color2: #60b48a
+URxvt.color3: #dfaf8f
+URxvt.color4: #9ab8d7
+URxvt.color5: #dc8cc3
+URxvt.color6: #8cd0d3
+URxvt.color7: #dcdccc
+URxvt.color8: #709080
+URxvt.color9: #dca3a3
+URxvt.color10: #72d5a3
+URxvt.color11: #f0dfaf
+URxvt.color12: #94bff3
+URxvt.color13: #ec93d3
+URxvt.color14: #93e0e3
+URxvt.color15: #ffffff
+
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+
+! URxvt.iconFile: /usr/share/pixmaps/terminal.xpm
+
+! rofi.terminal:             sakura -c 110 -r 23
+rofi.terminal:             alacritty
+!rofi.terminal:             kitty
+rofi.ssh-client:           ssh
+rofi.ssh-command:          {terminal} -e {ssh-client} {host}
+rofi.run-command:          {cmd}
+rofi.run-shell-command:    {terminal} -e {cmd}
+rofi.disable-history:      false
+rofi.levenshtein-sort:     false
+rofi.case-sensitive:       false
+rofi.auto-select:          false
+rofi.parse-hosts:          false
+! Separator style (none, dash, solid)
+rofi.separator-style:      none
+
+rofi.modi:                 run,window,ssh
+!rofi.opacity:              75
+rofi.width:                50
+rofi.lines:                15
+rofi.columns:              1
+rofi.font:                 Terminus 10
+
+! android_notification.theme
+rofi.color-enabled: true
+rofi.color-window: #3a4c54, #2a373e, #c3c6c8
+rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
+rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
+rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3

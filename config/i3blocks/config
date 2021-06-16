@@ -48,11 +48,11 @@ markup=none
 # command=~/.config/i3blocks/blocks/showme
 # interval=10
 
-[weather]
+#[weather]
 # color=#ef5350
-color=#80CBC4
-instance=1502026
-interval=60
+#color=#80CBC4
+#instance=1502026
+#interval=60
 
 [trash]
 # color=#ff5722
@@ -113,7 +113,7 @@ interval=60
 #label=
 label=
 #label=
-instance=enp3s0
+instance=enp5s0
 # color=#66bb6a
 color=#80CBC4
 interval=10
@@ -124,12 +124,12 @@ interval=10
 # interval=10
 # separator=false
 
-[bandwidth]
-label=
-# color=#4db6ac
-color=#80CBC4
-instance=enp3s0
-interval=2
+#[bandwidth]
+#label=
+## color=#4db6ac
+#color=#80CBC4
+#instance=enp5s0
+#interval=2
 
 # CPU usage
 #
@@ -143,7 +143,8 @@ interval=2
 # separator=false
 
 [cpu]
-#color=#00bcd4
+
+# color=#00bcd4
 color=#80CBC4
 label=
 interval=2
@@ -201,7 +202,7 @@ interval=2
 # signal=10
 
 [microphone]
-#color=#ce93d8
+# color=#ce93d8
 color=#80CBC4
 label=
 interval=5
@@ -209,7 +210,7 @@ interval=5
 # Date Time
 #
 [time]
-#color=#ea80fc
+# color=#ea80fc
 color=#80CBC4
 command=date '+%d-%m-%Y %H:%M'
 interval=5

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Requires : scrot, imagemagick, i3lock
 # Creates a screenshot of the current desktop,
@@ -16,8 +16,8 @@ tmpbg='/tmp/screen.png'
 
 scrot -o "$tmpbg"
 #convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
-convert "$tmpbg" -scale 25% -scale 400% -fill black -colorize 25% "$tmpbg"
-#convert "$tmpbg" -blur 0x5 "$tmpbg"
+#convert "$tmpbg" -scale 25% -scale 400% -fill black -colorize 25% "$tmpbg"
+convert "$tmpbg" -blur 0x5 "$tmpbg"
 #convert "$tmpbg" "$icon" -gravity center -composite -matte "$tmpbg"
 #i3lock -u -i "$tmpbg"
 #i3lock -i "$tmpbg"
@@ -31,7 +31,7 @@ V='#60BF80FF'  # verifying
 
 i3lock              \
 --image $tmpbg          \
---insidevercolor=$C   \
+#--insidevercolor=$C   \
 --ringvercolor=$V     \
 \
 --insidewrongcolor=$C \

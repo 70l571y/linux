@@ -24,27 +24,39 @@ bindsym $mod+n border normal
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:xos4 Terminus 8
-font pango:Misc Ohsnap 8
+#font pango:Misc Ohsnap 8
+# font pango:Ubuntu Mono 10
+# font pango:Terminus (TTF) 9
+font pango:Terminus 8
 
 # Use Mouse+$mod to drag floating windows
 #floating_modifier $mod
 floating_modifier Mod1
 
 # start a terminal
-bindsym $mod+Return exec sakura
-#bindsym $mod+Return exec terminator
+bindsym $mod+Return exec sakura -c 110 -r 20
+# bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec terminator
 
 # kill focused window
 #bindsym $mod+Shift+q kill
 bindsym $mod+x kill
 # start program launcher
-#bindsym $mod+d exec --no-startup-id dmenu_run -i -p 'Run:' -sb '#333' -nf '#999' -sf '#9df' -fn 'Misc Ohsnap:size=10'
+# bindsym $mod+d exec --no-startup-id dmenu_run -i -p 'Run:' -nb '#002b36' -sb '#586e75' -nf '#839496' -sf '#000000' -fn 'Terminus (TTF):size=9'
 #bindsym $mod+d exec rofi -show run -font "Misc Ohsnap 10"
-bindsym $mod+d exec rofi -show run -font "xos4 Terminus 8"
-bindsym $mod+r exec rofi -show window -font "xos4 Terminus 8"
-bindsym $mod+q exec rofi -show ssh -font "xos4 Terminus 8"
-bindsym $mod+t exec --no-startup-id sakura
+#bindsym $mod+d exec rofi -show run -font "xos4 Terminus 8"
+# bindsym $mod+d exec rofi -show run -font "Ubuntu Mono Regular 8"
+bindsym $mod+d exec rofi -show run -font "Terminus 9"
+bindsym $mod+r exec rofi -show window -font "Terminus 9"
+bindsym $mod+q exec rofi -show ssh -font "Terminus 9"
+#bindsym $mod+t exec --no-startup-id sakura -c 110 -r 23
+bindsym $mod+t exec --no-startup-id alacritty
+# bindsym $mod+t exec --no-startup-id kitty
 #bindsym $mod+t exec --no-startup-id terminator
+bindsym $mod+p exec --no-startup-id passmenu
+#key indicators for i3blocks
+# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -53,22 +65,21 @@ bindsym $mod+t exec --no-startup-id sakura
 
 ###bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
+#exec --no-startup-ido d pa-applet
 #exec --no-startup-id pulseaudio --start
 bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
 # Start Applications
-#bindsym $mod+F1 exec chromium
-#bindsym $mod+F2 exec google-chrome-stable
-bindsym $mod+F1 exec firefox
+bindsym $mod+F1 exec chromium --enable-native-gpu-memory-buffers --enable-features="CheckerImaging"
+# bindsym $mod+F1 exec firefox
 bindsym $mod+F2 exec --no-startup-id pcmanfm
-bindsym $mod+Shift+F3 exec --no-startup-id gksu thunar
+bindsym $mod+g exec --no-startup-id mousepad
+#bindsym $mod+Shift+F3 exec --no-startup-id gksu pcmanfm
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots'"
-bindsym $mod+Print --release exec "scrot -ue 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots'"
-bindsym $mod+Shift+Print --release exec "notify-send 'selection will be saved to ~/Screenshots'; scrot -se 'mv $f ~/Screenshots'"
+bindsym Print exec "scrot -e 'mv $f ~/Screenshots/'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots/'"
+bindsym $mod+Print --release exec "scrot -ue 'mv $f ~/Screenshots/'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots/'"
 bindsym $mod+Ctrl+x exec xkill
 
 focus_follows_mouse no
@@ -129,16 +140,20 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+a focus parent
 
 # Workspace names
-set $ws1 "1:WEB >"
-set $ws2 "2:FM >"
-set $ws3 "3:MAIL >"
-set $ws4 "4:WIN >"
-set $ws5 "5:VB >"
-set $ws6 "6:6 >"
-set $ws7 "7:7 >"
-set $ws8 "8:8 >"
-set $ws9 "9:CODE"
-set $ws0 "0:0 >"
+# echo -e '\uf268'
+set $ws1 "1:"
+set $ws2 "2:"
+# set $ws3 "3:"
+set $ws3 "3:"
+set $ws4 "4:"
+# set $ws4 "4:"
+set $ws5 "5:"
+# set $ws6 "6: >"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws0 "0:"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -181,94 +196,81 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 
 # Open applications on specific workspaces
-assign [class="Firefox"] $ws1
-assign [class="VirtualBox"] $ws5
-assign [class="Thunderbird"] $ws3
-assign [class="jetbrains-pycharm"] $ws9
-assign [class="jetbrains-phpstorm"] $ws9
-assign [class="jetbrains-goland"] $ws8
-assign [class="Subl"] $ws0
-assign [class="Code"] $ws9
-assign [class="Remmina"] $ws4
+assign [class="firefox"] $ws1
+assign [class="Chromium"] $ws1
 assign [class="Pcmanfm"] $ws2
+assign [class="Midori"] $ws3
+assign [class="Thunderbird"] $ws3
+assign [class="Remmina"] $ws4
+assign [class="qpdfview"] $ws5
+assign [class="VirtualBox"] $ws5
+assign [class="DBeaver"] $ws6
+assign [class="robo3t"] $ws7
+assign [class="Postman"] $ws6
+assign [class="Subl"] $ws8
+assign [class="atom"] $ws0
+assign [class="code-oss"] $ws8
+assign [class="jetbrains-goland"] $ws8
+assign [class="java-lang-Thread"] $ws0
 
 # Gaps
-#gaps inner 10
-#gaps outer 15
+gaps inner 7
+gaps outer 3
 
-#gaps inner 10
-#gaps outer 5
+bindsym $mod+F11 exec i3-msg gaps inner current minus 5
+bindsym $mod+F12 exec i3-msg gaps inner current plus 5
 
-#bindsym $mod+F11 exec i3-msg gaps inner current minus 5
-#bindsym $mod+F12 exec i3-msg gaps inner current plus 5
+bindsym $mod+F9 exec i3-msg gaps outer current minus 5
+bindsym $mod+F10 exec i3-msg gaps outer current plus 5
 
-#bindsym $mod+F9 exec i3-msg gaps outer current minus 5
-#bindsym $mod+F10 exec i3-msg gaps outer current plus 5
-
-#smart_gaps on
+smart_gaps on
+smart_borders on
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 2
-for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 2
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Thus"] floating enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
 #for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Jitsi"] floating enable
-for_window [class="Linphone"] floating enable
-for_window [class="Leafpad"] floating enable
-for_window [class="Subl3"] border none
-for_window [class="Subl"] border none
 for_window [class="Tilda"] floating enable
 for_window [class="Urxvt"] floating enable
 for_window [class="Sakura"] floating enable
-for_window [class="Ekiga"] floating enable
+for_window [class="Alacritty"] floating enable
+for_window [class="kitty"] floating enable
 for_window [class="Gpicview"] floating enable
 for_window [class="Keepassx"] floating enable
-for_window [class="Catfish"] floating enable
-for_window [class="Vlc"] floating enable
-for_window [class="Firefox"] border none
-for_window [class="Chromium"] border none
-for_window [class="Google-chrome"] border none
-for_window [class="Thunar"] border none
-for_window [class="Pcmanfm"] border none
-for_window [class="Atril"] border none
-for_window [class="Brackets"] border none
-for_window [class="keeweb"] floating enable
-for_window [class="atom"] floating enable
-for_window [class="Crossover"] floating enable
-for_window [class="pgadmin3"] floating enable
-for_window [class="jetbrains-pycharm"] border none
-for_window [class="jetbrains-goland"] border none
-for_window [class="jetbrains-phpstorm"] border none
 for_window [class="Terminator"] floating enable
-for_window [class="file-roller"] floating enable
-for_window [class="phonerlite.exe"] border none
 for_window [class="Mousepad"] floating enable
-for_window [class="Remmina"] floating enable
-for_window [class="libreoffice"] border none
-for_window [class="Code"] border none
-for_window [class="Thunderbird"] border none
-for_window [class="Mbrowse"] floating enable border none
+for_window [class="Xarchiver"] floating enable
+for_window [class="Network Connections"] floating enable
+for_window [class="File-roller"] floating enable
+for_window [class="GitKraken"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+for_window [class="flacon"] floating enable
+for_window [class="Mainwindow.py"] floating enable
+for_window [class="Deadbeef"] floating enable
+for_window [class="KeePassXC"] floating enable
+for_window [class="Skype"] floating enable border none
+for_window [class="java-lang-Thread"] floating enable border none
+for_window [class="telegram-desktop"] floating enable border none
 
 #scratchpad
-for_window [instance="telegram-desktop"] move window to scratchpad, scratchpad show
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+for_window [instance="telegram-desktop"] move window to scratchpad
+# for_window [instance="slack"] move window to scratchpad, scratchpad show
+# bindsym $mod+F1 [class="^TelegramDesktop$"] scratchpad show
+# bindsym $mod+F2 [class="^Keepassx$"] scratchpad show
+# bindsym $mod+Shift+minus move scratchpad
+# bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+grave scratchpad show
+
 
 # switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
+#for_window [urgent=latest] focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -280,8 +282,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # i3 lock
-bindsym $mod+Scroll_Lock exec "~/.config/i3/lock.sh"
-exec xautolock -time 15 -locker '~/.config/i3/lock.sh' &
+# bindsym $mod+Scroll_Lock exec "~/.config/i3/lock2.sh"
+# exec xautolock -time 15 -locker '~/.config/i3/lock2.sh' &
+bindsym --release $mod+Scroll_Lock exec --no-startup-id slock
+exec xautolock -time 15 -locker --no-startup-id slock &
 
 # Set shutdown, restart and locking features
 #set $Locker i3lock && sleep 1
@@ -289,9 +293,9 @@ exec xautolock -time 15 -locker '~/.config/i3/lock.sh' &
 set $mode_system System  [l]ogout, [s]uspend, [r]eboot, [p]oweroff
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id suspend, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
-    bindsym p exec --no-startup-id poweroff -i, mode "default"  
+    bindsym p exec --no-startup-id poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -300,7 +304,7 @@ mode "$mode_system" {
 
 bindsym $mod+Pause mode "$mode_system"
 
-# Resize window (you can also use the mouse for that)
+# Resize window (you can also use the mouse for that
 #bindsym $mod+r mode "resize"
 #mode "resize" {
 #        # These bindings trigger as soon as you enter the resize mode
@@ -326,44 +330,71 @@ bindsym $mod+Pause mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-#    i3bar_command i3bar -t
-#	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    status_command i3status
+    # status_command i3blocks -c ~/.config/i3blocks/config
+    status_command i3status-rs /home/si/.config/i3status-rs/config.toml
+    # i3bar_command i3blocks -t
+    # i3bar_command i3bar
 #    status_command /home/si/go/bin/yagostatus
-	output HDMI1
-	#position	top
-#	wheel_up_cmd nop
+	output DisplayPort-5
+  height 16
+	# position	top
+#	wheel_up_cmd no
 #	wheel_down_cmd nop
 	strip_workspace_numbers yes
-#	font pango:xos4 Terminus 8
-	font pango:Misc Ohsnap 8
-    separator_symbol "<"
-#    set $transparent #00000000
-    colors {
-        separator #ff7100
-        background #263238
-        statusline #ffeaad
-        focused_workspace #263238 #263238 #ff7100
-        active_workspace #2D2D2D #A4A28D #ff7100
-        inactive_workspace #263238 #263238 #ffeaad
-    }
-# transparency
-#    colors {
-#        separator #ff7100
-#        background $transparent
-#        statusline #ffeaad
-#        focused_workspace $transparent $transparent #ff7100
-#        active_workspace #2D2D2D #A4A28D #ff7100
-#       inactive_workspace $transparent $transparent #ffeaad
-
+	# font pango:Terminus (TTF) 9
+  # font pango:xos4 Terminus 8
+	font pango:Terminus 8
+    # font pango:Misc Ubuntu Mono Regular 8
+	# font pango: Misc Ohsnap 8
+    # separator_symbol "<"
+    # separator_symbol "|"
+#   transparency
+  # set $transparent #00000000
+  # Adwaita theme
+    # colors {
+    #     separator #1cffcd
+    #     background #263238
+    #     statusline #ffeaad
+    #     focused_workspace #263238 #263238 #1cffcd
+    #     active_workspace #2D2D2D #A4A28D #00ff83
+    #     inactive_workspace #263238 #263238 #78909c
+    # }
+  # Adwaita theme
+    # colors {
+    #     separator #ff7100
+    #     background #263238
+    #     statusline #ffeaad
+    #     focused_workspace #263238 #263238 #ff7100
+    #     active_workspace #2D2D2D #A4A28D #ff7100
+    #     inactive_workspace #263238 #263238 #78909c
+    # }
+# Transparent theme
+   # colors {
+   #     separator #ff7100
+   #     background $transparent
+   #     statusline #ffeaad
+   #     focused_workspace $transparent $transparent #ff7100
+   #     active_workspace #2D2D2D #A4A28D #ff7100
+   #    inactive_workspace $transparent $transparent #78909c
+   #  }
 # colors v2
-#	colors {
-#		separator #ff7100
-#		background #3E515A
-#		statusline #ffeaad
-#		focused_workspace #ff7100 #CE5C00 #FFFFFF
-#		inactive_workspace #3E515A #3E515A #DDDDDD
-#	}
+	# colors {
+	# 	separator #ff7100
+	# 	background #3E515A
+	# 	statusline #ffeaad
+	# 	focused_workspace #ff7100 #CE5C00 #FFFFFF
+	# 	inactive_workspace #3E515A #3E515A #DDDDDD
+	# }
+# Solarized Dark
+    colors {
+      background #002b36
+      statusline #839496
+      separator  #dc322f
+      focused_workspace  #586e75 #586e75 #002b36
+      active_workspace   #586e75 #586e75 #002b36
+      inactive_workspace #073642 #002b36 #839496
+      urgent_workspace   #dc322f #dc322f #fdf6e3
+    }
 
 #colors for arc themes
 #	colors {
@@ -377,51 +408,64 @@ bar {
 #	}
 }
 
-# Autostart applications
-#exec --no-startup-id nm-applet
-#exec --no-startup-id xfce4-power-manager
-#exec_always --no-startup-id sbxkb
-#exec --no-startup-id pidgin
-#exec --no-startup-id sakura
-#exec --no-startup-id chromium
-#exec --no-startup-id thunar --daemon
-#exec --no-startup-id jitsi
-#exec --no-startup-id xscreensaver -no-splash
-#exec --no-startup-id compton -f --vsync drm -D 1 --config $HOME/.compton.conf -bc
-#exec --no-startup-id redshift -l 56.015283:92.893248 &
-#exec --no-startup-id telegram-desktop
+# Theme colors
+# Solarized Dark
+client.focused #1cffcd #1cffcd #000000 #FFFFFF
+client.unfocused #222222 #222222 #2ECC71 #222222
+client.urgent #dc322f #dc322f #FFFFFF #900000
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# Autostart applications
+#exec_always --no-startup-id sbxkb
+#exec --no-startup-id thunar --daemon
+#exec --no-startup-id xscreensaver -no-splash
+#exec --no-startup-id redshift -l 56.015283:92.893248 &
+# exec --no-startup-id compton -f --vsync drm -D 1 --config $HOME/.compton.conf -bc
+# exec --no-startup-id compton -f --vsync opengl -D 1 --config $HOME/.compton.conf -bc
+
+
+#exec --no-startup-id /usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh
+#exec --no-startup-id /usr/lib/x86_64-linux-gnu/indicator-messages/indicator-messages-service
+#exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id system-config-printer-applet
+#exec --no-startup-id usr/bin/snap userd --autostart
+#exec --no-startup-id /usr/bin/spice-vdagent
+#exec --no-startup-id update-notifier
+# exec --no-startup-id xdg-user-dirs-gtk-update
 exec --no-startup-id pulseaudio -k
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id tilda
 exec --no-startup-id numlockx &
 exec --no-startup-id pcmanfm -d
-exec --no-startup-id twmnd &
+# exec --no-startup-id twmnd &
 exec --no-startup-id parcellite
-exec compton -f --vsync drm
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
+exec --no-startup-id udiskie -2 &
+#exec --no-startup-id chromium --enable-native-gpu-memory-buffers --enable-features="CheckerImaging"
+# exec --no-startup-id firefox
+#exec --no-startup-id thunderbird
+exec --no-startup-id nm-applet
+#exec --no-startup-id subl
+#exec --no-startup-id telegram-desktop
 
-# Theme colors
-
-client.focused #CE5C00 #CE5C00 #000000 #FFFFFF
-client.unfocused #222222 #222222 #2ECC71 #222222
-client.urgent #274D01 #900000 #FFFFFF #900000
 
 #Automatically putting workspaces on specific screens
-#workspace $ws0 output HDMI1
-workspace $ws0 output VGA1
-workspace $ws1 output HDMI1
-workspace $ws2 output HDMI1
-workspace $ws3 output HDMI1
-workspace $ws4 output HDMI1
-workspace $ws5 output HDMI1
-workspace $ws6 output HDMI1
-workspace $ws7 output HDMI1
-workspace $ws8 output HDMI1
-workspace $ws9 output HDMI1
+#workspace $ws0 output HDMI-1
+workspace $ws0 output DisplayPort-5
+workspace $ws1 output DisplayPort-5
+workspace $ws2 output DisplayPort-5
+workspace $ws3 output DisplayPort-5
+workspace $ws4 output DisplayPort-5
+workspace $ws5 output DisplayPort-5
+workspace $ws6 output DisplayPort-5
+workspace $ws7 output DisplayPort-5
+workspace $ws8 output DisplayPort-5
+workspace $ws9 output DisplayPort-5
 
 #set display resolution
-exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --output VGA1 --mode 1280x1024 --pos 1920x0
+# exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --output VGA1 --mode 1920x1080 --pos 1920x0
 
 #set keymaps
 exec --no-startup-id setxkbmap "us,ru" ",winkeys" "grp:caps_toggle"
